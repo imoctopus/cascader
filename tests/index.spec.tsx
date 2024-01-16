@@ -3,7 +3,7 @@
 import { spyElementPrototypes } from 'rc-util/lib/test/domHook';
 import { resetWarned } from 'rc-util/lib/warning';
 import React from 'react';
-import Cascader from '../src';
+import Cascader, { CascaderProps } from '../src';
 import { addressOptions, addressOptionsForUneven, optionsForActiveMenuItems } from './demoOptions';
 import { mount } from './enzyme';
 
@@ -1067,5 +1067,78 @@ describe('Cascader.Basic', () => {
       'Warning: `value` in Cascader options should not be `null`.',
     );
     errorSpy.mockReset();
+  });
+
+  it('virtual list', () => {
+    const generateVirtualOptions = (name: string, length: number): CascaderProps['options'] => {
+      return Array.from({ length: 1000 }, (_, i) => ({
+        label: `${name} - ${i + 1}`,
+        value: i + 1,
+      }));
+    };
+
+    const options = generateVirtualOptions('A', 1000);
+    options[0].children = generateVirtualOptions('B', 1000);
+    options[0].children[0].children = generateVirtualOptions('C', 1000);
+
+    const wrapper = mount(
+      <Cascader open options={options} listHeight={180} listItemHeight={22} virtual={false} />,
+    );
+
+    expect(wrapper.find('.rc-cascader-menu-item')).toHaveLength(1000);
+    wrapper.clickOption(0, 0);
+    expect(wrapper.find('.rc-cascader-menu-item')).toHaveLength(2000);
+    wrapper.clickOption(1, 0);
+    expect(wrapper.find('.rc-cascader-menu-item')).toHaveLength(3000);
+  });
+
+  it('support virtual list', () => {
+    const generateVirtualOptions = (name: string): CascaderProps['options'] => {
+      return Array.from({ length: 1000 }, (_, i) => ({
+        label: `${name} - ${i + 1}`,
+        value: i + 1,
+      }));
+    };
+
+    const options = generateVirtualOptions('A');
+    options[0].children = generateVirtualOptions('B');
+    options[0].children[0].children = generateVirtualOptions('C');
+
+    const wrapper = mount(
+      <Cascader open options={options} listHeight={180} listItemHeight={22} virtual={true} />,
+    );
+
+    wrapper.clickOption(0, 0);
+    wrapper.clickOption(1, 0);
+
+    const menus = wrapper.find('.rc-cascader-menu .rc-cascader-menu');
+
+    expect(menus.at(0).find('.rc-cascader-menu-item').length).toBeLessThan(1000);
+    expect(menus.at(1).find('.rc-cascader-menu-item').length).toBeLessThan(1000);
+    expect(menus.at(2).find('.rc-cascader-menu-item').length).toBeLessThan(1000);
+  });
+
+  it('when virtual is false', () => {
+    const generateVirtualOptions = (name: string): CascaderProps['options'] => {
+      return Array.from({ length: 1000 }, (_, i) => ({
+        label: `${name} - ${i + 1}`,
+        value: i + 1,
+      }));
+    };
+
+    const options = generateVirtualOptions('A');
+    options[0].children = generateVirtualOptions('B');
+    options[0].children[0].children = generateVirtualOptions('C');
+
+    const wrapper = mount(<Cascader open options={options} virtual={false} />);
+
+    wrapper.clickOption(0, 0);
+    wrapper.clickOption(1, 0);
+
+    const menus = wrapper.find('.rc-cascader-menu .rc-cascader-menu');
+
+    expect(menus.at(0).find('.rc-cascader-menu-item')).toHaveLength(1000);
+    expect(menus.at(1).find('.rc-cascader-menu-item')).toHaveLength(1000);
+    expect(menus.at(2).find('.rc-cascader-menu-item')).toHaveLength(1000);
   });
 });
