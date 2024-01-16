@@ -235,6 +235,12 @@ React.render(
       <td>>true</td>
       <td>hide popup on select</td>
     </tr>
+    <tr>
+      <td>virtual</td>
+      <td>Boolean</td>
+      <td>true</td>
+      <td>Disable virtual scroll</td>
+    </tr>
   </tbody>
 </table>
 
