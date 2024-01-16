@@ -14,8 +14,8 @@ Object.assign(Enzyme.ReactWrapper.prototype, {
     return !!this.find('Trigger').props().popupVisible;
   },
   findOption(menuIndex, itemIndex) {
-    const menu = this.find('ul.rc-cascader-menu').at(menuIndex);
-    const itemList = menu.find('li.rc-cascader-menu-item');
+    const menu = this.find('.rc-cascader-menu .rc-cascader-menu').at(menuIndex);
+    const itemList = menu.find('.rc-virtual-list-holder-inner .rc-cascader-menu-item');
 
     return itemList.at(itemIndex);
   },

@@ -40,32 +40,32 @@ describe('Cascader.Keyboard', () => {
 
   it('should have keyboard support', () => {
     wrapper.find('input').simulate('keyDown', { which: KeyCode.DOWN });
-    menus = wrapper.find('.rc-cascader-menu');
+    menus = wrapper.find('.rc-cascader-menu .rc-cascader-menu');
     expect(wrapper.isOpen()).toBeTruthy();
     expect(menus.length).toBe(1);
     wrapper.find('input').simulate('keyDown', { which: KeyCode.DOWN });
-    menus = wrapper.find('.rc-cascader-menu');
+    menus = wrapper.find('.rc-cascader-menu .rc-cascader-menu');
     expect(menus.length).toBe(2);
     wrapper.find('input').simulate('keyDown', { which: KeyCode.RIGHT });
-    menus = wrapper.find('.rc-cascader-menu');
+    menus = wrapper.find('.rc-cascader-menu .rc-cascader-menu');
     expect(menus.length).toBe(3);
     wrapper.find('input').simulate('keyDown', { which: KeyCode.RIGHT });
-    menus = wrapper.find('.rc-cascader-menu');
+    menus = wrapper.find('.rc-cascader-menu .rc-cascader-menu');
     expect(menus.length).toBe(3);
     wrapper.find('input').simulate('keyDown', { which: KeyCode.LEFT });
-    menus = wrapper.find('.rc-cascader-menu');
+    menus = wrapper.find('.rc-cascader-menu .rc-cascader-menu');
     expect(menus.length).toBe(3);
     wrapper.find('input').simulate('keyDown', { which: KeyCode.QUESTION_MARK });
-    menus = wrapper.find('.rc-cascader-menu');
+    menus = wrapper.find('.rc-cascader-menu .rc-cascader-menu');
     expect(menus.length).toBe(3);
     wrapper.find('input').simulate('keyDown', { which: KeyCode.LEFT });
-    menus = wrapper.find('.rc-cascader-menu');
+    menus = wrapper.find('.rc-cascader-menu .rc-cascader-menu');
     expect(menus.length).toBe(2);
     expect(wrapper.find('.rc-cascader-menu-item-active').at(0).text()).toBe(
       addressOptions[0].label,
     );
     wrapper.find('input').simulate('keyDown', { which: KeyCode.DOWN });
-    menus = wrapper.find('.rc-cascader-menu');
+    menus = wrapper.find('.rc-cascader-menu .rc-cascader-menu');
     expect(menus.length).toBe(2);
     expect(wrapper.find('.rc-cascader-menu-item-active').at(0).text()).toBe(
       addressOptions[1].label,

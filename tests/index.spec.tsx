@@ -45,7 +45,7 @@ describe('Cascader.Basic', () => {
     wrapper.find('input').simulate('click');
 
     // Menu 1
-    let menus = wrapper.find('.rc-cascader-menu');
+    let menus = wrapper.find('.rc-cascader-menu .rc-cascader-menu');
     expect(menus.length).toBe(1);
     const menu1Items = menus.at(0).find('.rc-cascader-menu-item');
     expect(menu1Items.length).toBe(3);
@@ -57,7 +57,7 @@ describe('Cascader.Basic', () => {
     ).toBeTruthy();
 
     // Menu 2
-    menus = wrapper.find('.rc-cascader-menu');
+    menus = wrapper.find('.rc-cascader-menu .rc-cascader-menu');
     expect(menus.length).toBe(2);
     const menu2Items = menus.at(1).find('.rc-cascader-menu-item');
     expect(menu2Items.length).toBe(2);
@@ -75,7 +75,7 @@ describe('Cascader.Basic', () => {
     ).toBeTruthy();
 
     // Menu 3
-    menus = wrapper.find('.rc-cascader-menu');
+    menus = wrapper.find('.rc-cascader-menu .rc-cascader-menu');
     expect(menus.length).toBe(3);
     const menu3Items = menus.at(2).find('.rc-cascader-menu-item');
     expect(menu3Items.length).toBe(1);
@@ -100,10 +100,10 @@ describe('Cascader.Basic', () => {
       </Cascader>,
     );
     wrapper.find('input').simulate('click');
-    let menus = wrapper.find('.rc-cascader-menu');
+    let menus = wrapper.find('.rc-cascader-menu .rc-cascader-menu');
     expect(menus.length).toBe(1);
     wrapper.clickOption(0, 2);
-    menus = wrapper.find('.rc-cascader-menu');
+    menus = wrapper.find('.rc-cascader-menu .rc-cascader-menu');
     expect(menus.length).toBe(2);
     wrapper.clickOption(1, 0);
     wrapper.clickOption(1, 1);
@@ -125,10 +125,10 @@ describe('Cascader.Basic', () => {
     wrapper.find('input').simulate('click');
 
     // Menu 1
-    let menus = wrapper.find('.rc-cascader-menu');
+    let menus = wrapper.find('.rc-cascader-menu .rc-cascader-menu');
     expect(menus.length).toBe(1);
     wrapper.clickOption(0, 2);
-    menus = wrapper.find('.rc-cascader-menu');
+    menus = wrapper.find('.rc-cascader-menu .rc-cascader-menu');
     expect(menus.length).toBe(2);
     wrapper.clickOption(1, 0);
     wrapper.clickOption(1, 1);
@@ -149,7 +149,7 @@ describe('Cascader.Basic', () => {
       </Cascader>,
     );
     wrapper.find('input').simulate('click');
-    const menus = wrapper.find('.rc-cascader-menu');
+    const menus = wrapper.find('.rc-cascader-menu .rc-cascader-menu');
     expect(menus.length).toBe(3);
     const activeMenuItems = wrapper.find('.rc-cascader-menu-item-active');
     expect(activeMenuItems.length).toBe(3);
@@ -167,7 +167,7 @@ describe('Cascader.Basic', () => {
     wrapper.find('input').simulate('click');
 
     // Menu 1
-    let menus = wrapper.find('.rc-cascader-menu');
+    let menus = wrapper.find('.rc-cascader-menu .rc-cascader-menu');
     expect(menus.length).toBe(1);
     const menu1Items = menus.at(0).find('.rc-cascader-menu-item');
     expect(menu1Items.length).toBe(3);
@@ -186,7 +186,7 @@ describe('Cascader.Basic', () => {
     ).toBeTruthy();
 
     // Menu 2
-    menus = wrapper.find('.rc-cascader-menu');
+    menus = wrapper.find('.rc-cascader-menu .rc-cascader-menu');
     expect(menus.length).toBe(2);
     const menu2Items = menus.at(1).find('.rc-cascader-menu-item');
     expect(menu2Items.length).toBe(2);
@@ -206,7 +206,7 @@ describe('Cascader.Basic', () => {
     ).toBeTruthy();
 
     // Menu 3
-    menus = wrapper.find('.rc-cascader-menu');
+    menus = wrapper.find('.rc-cascader-menu .rc-cascader-menu');
     expect(menus.length).toBe(3);
     const menu3Items = menus.at(2).find('.rc-cascader-menu-item');
     expect(menu3Items.length).toBe(1);
@@ -225,9 +225,9 @@ describe('Cascader.Basic', () => {
       </Cascader>,
     );
     wrapper.find('input').simulate('click');
-    let menus = wrapper.find('.rc-cascader-menu');
+    let menus = wrapper.find('.rc-cascader-menu .rc-cascader-menu');
     wrapper.clickOption(0, 0);
-    menus = wrapper.find('.rc-cascader-menu');
+    menus = wrapper.find('.rc-cascader-menu .rc-cascader-menu');
     expect(menus.length).toBe(2);
 
     wrapper.find('input').simulate('click');
@@ -236,7 +236,7 @@ describe('Cascader.Basic', () => {
     wrapper.find('input').simulate('click');
     expect(wrapper.isOpen()).toBeTruthy();
 
-    menus = wrapper.find('.rc-cascader-menu');
+    menus = wrapper.find('.rc-cascader-menu .rc-cascader-menu');
     expect(menus.length).toBe(1);
   });
 
@@ -247,11 +247,11 @@ describe('Cascader.Basic', () => {
       </Cascader>,
     );
     wrapper.find('input').simulate('click');
-    let menus = wrapper.find('.rc-cascader-menu');
+    let menus = wrapper.find('.rc-cascader-menu .rc-cascader-menu');
     expect(menus.length).toBe(3);
 
     wrapper.clickOption(0, 0);
-    menus = wrapper.find('.rc-cascader-menu');
+    menus = wrapper.find('.rc-cascader-menu .rc-cascader-menu');
     expect(menus.length).toBe(2);
 
     wrapper.find('input').simulate('click');
@@ -259,7 +259,7 @@ describe('Cascader.Basic', () => {
 
     wrapper.find('input').simulate('click');
     expect(wrapper.isOpen()).toBeTruthy();
-    menus = wrapper.find('.rc-cascader-menu');
+    menus = wrapper.find('.rc-cascader-menu .rc-cascader-menu');
     expect(menus.length).toBe(3);
   });
 
@@ -275,11 +275,11 @@ describe('Cascader.Basic', () => {
       </Cascader>,
     );
     wrapper.find('input').simulate('click');
-    let menus = wrapper.find('.rc-cascader-menu');
+    let menus = wrapper.find('.rc-cascader-menu .rc-cascader-menu');
     expect(menus.length).toBe(3);
 
     wrapper.clickOption(0, 0);
-    menus = wrapper.find('.rc-cascader-menu');
+    menus = wrapper.find('.rc-cascader-menu .rc-cascader-menu');
     expect(menus.length).toBe(2);
 
     wrapper.find('input').simulate('click');
@@ -287,7 +287,7 @@ describe('Cascader.Basic', () => {
 
     wrapper.find('input').simulate('click');
     expect(wrapper.isOpen()).toBeTruthy();
-    menus = wrapper.find('.rc-cascader-menu');
+    menus = wrapper.find('.rc-cascader-menu .rc-cascader-menu');
     expect(menus.length).toBe(2);
     expect(selectedValue.length).toBe(1);
     expect(selectedValue[0]).toBe('fj');
@@ -300,22 +300,22 @@ describe('Cascader.Basic', () => {
       </Cascader>,
     );
     wrapper.find('input').simulate('click');
-    let menus = wrapper.find('.rc-cascader-menu');
+    let menus = wrapper.find('.rc-cascader-menu .rc-cascader-menu');
     expect(menus.length).toBe(2);
 
     wrapper.clickOption(0, 0);
-    menus = wrapper.find('.rc-cascader-menu');
+    menus = wrapper.find('.rc-cascader-menu .rc-cascader-menu');
     expect(menus.length).toBe(2);
 
     wrapper.clickOption(1, 0);
-    menus = wrapper.find('.rc-cascader-menu');
+    menus = wrapper.find('.rc-cascader-menu .rc-cascader-menu');
     expect(menus.length).toBe(3);
 
     wrapper.clickOption(2, 0);
     expect(wrapper.isOpen()).toBeFalsy();
 
     wrapper.find('input').simulate('click');
-    menus = wrapper.find('.rc-cascader-menu');
+    menus = wrapper.find('.rc-cascader-menu .rc-cascader-menu');
     expect(wrapper.isOpen()).toBeTruthy();
     expect(menus.length).toBe(2);
   });
@@ -341,7 +341,7 @@ describe('Cascader.Basic', () => {
     );
     wrapper.find('input').simulate('click');
     expect(wrapper.isOpen()).toBeTruthy();
-    expect(wrapper.find('.rc-cascader-menu')).toHaveLength(1);
+    expect(wrapper.find('.rc-cascader-menu .rc-cascader-menu')).toHaveLength(1);
     expect(wrapper.find('.rc-cascader-menu-item')).toHaveLength(1);
     expect(wrapper.find('.rc-cascader-menu-item').text()).toEqual('Not Found');
 
@@ -365,7 +365,7 @@ describe('Cascader.Basic', () => {
       </Cascader>,
     );
     wrapper.find('input').simulate('click');
-    const menus = wrapper.find('.rc-cascader-menu');
+    const menus = wrapper.find('.rc-cascader-menu .rc-cascader-menu');
     expect(menus.length).toBe(1);
   });
 
@@ -382,7 +382,7 @@ describe('Cascader.Basic', () => {
         </Cascader>,
       );
       wrapper.find('input').simulate('click');
-      let menus = wrapper.find('.rc-cascader-menu');
+      let menus = wrapper.find('.rc-cascader-menu .rc-cascader-menu');
       expect(menus.length).toBe(1);
       const menu1Items = menus.at(0).find('.rc-cascader-menu-item');
       expect(menu1Items.length).toBe(3);
@@ -392,7 +392,7 @@ describe('Cascader.Basic', () => {
       expect(
         wrapper.find('.rc-cascader-menu-item').first().hasClass('rc-cascader-menu-item-disabled'),
       ).toBe(true);
-      menus = wrapper.find('.rc-cascader-menu');
+      menus = wrapper.find('.rc-cascader-menu .rc-cascader-menu');
       expect(menus.length).toBe(1);
     });
 
@@ -432,7 +432,7 @@ describe('Cascader.Basic', () => {
     expect(activeMenuItems.length).toBe(2);
     expect(activeMenuItems.at(0).text()).toBe('1');
     expect(activeMenuItems.at(1).text()).toBe('2');
-    const menus = wrapper.find('.rc-cascader-menu');
+    const menus = wrapper.find('.rc-cascader-menu .rc-cascader-menu');
     const activeMenuItemsInMenu1 = menus.at(0).find('.rc-cascader-menu-item-active');
     expect(activeMenuItemsInMenu1.length).toBe(1);
   });
@@ -468,16 +468,16 @@ describe('Cascader.Basic', () => {
     }
     const wrapper = mount(<Demo />);
     wrapper.find('input').simulate('click');
-    let menus = wrapper.find('.rc-cascader-menu');
+    let menus = wrapper.find('.rc-cascader-menu .rc-cascader-menu');
     expect(menus.length).toBe(1);
 
     wrapper.clickOption(0, 0);
-    menus = wrapper.find('.rc-cascader-menu');
+    menus = wrapper.find('.rc-cascader-menu .rc-cascader-menu');
     expect(menus.length).toBe(2);
 
     jest.runAllTimers();
     wrapper.update();
-    menus = wrapper.find('.rc-cascader-menu');
+    menus = wrapper.find('.rc-cascader-menu .rc-cascader-menu');
     expect(menus.length).toBe(2);
   });
 
@@ -490,7 +490,7 @@ describe('Cascader.Basic', () => {
     );
 
     wrapper.find('input').simulate('click');
-    const menus = wrapper.find('.rc-cascader-menu');
+    const menus = wrapper.find('.rc-cascader-menu .rc-cascader-menu');
     expect(menus.length).toBe(1);
     const menu1Items = menus.at(0).find('.rc-cascader-menu-item');
     expect(menu1Items.length).toBe(3);
@@ -508,7 +508,7 @@ describe('Cascader.Basic', () => {
     );
 
     wrapper.find('input').simulate('click');
-    const menus = wrapper.find('.rc-cascader-menu');
+    const menus = wrapper.find('.rc-cascader-menu .rc-cascader-menu');
     expect(menus.length).toBe(1);
     const menu1Items = menus.at(0).find('.rc-cascader-menu-item');
     expect(menu1Items.length).toBe(3);
@@ -563,7 +563,7 @@ describe('Cascader.Basic', () => {
       </Cascader>,
     );
     wrapper.find('input').simulate('click');
-    const menus = wrapper.find('.rc-cascader-menu');
+    const menus = wrapper.find('.rc-cascader-menu .rc-cascader-menu');
     expect(menus.length).toBe(3);
     const activeMenuItems = wrapper.find('.rc-cascader-menu-item-active');
     expect(activeMenuItems.length).toBe(3);
@@ -619,7 +619,7 @@ describe('Cascader.Basic', () => {
         <input readOnly />
       </Cascader>,
     );
-    const menus = wrapper.find('.rc-cascader-menu');
+    const menus = wrapper.find('.rc-cascader-menu .rc-cascader-menu');
     expect(menus.render()).toMatchSnapshot();
   });
 
@@ -655,36 +655,37 @@ describe('Cascader.Basic', () => {
         changeOnSelect
         expandTrigger="hover"
         options={addressOptionsForUneven}
-        onChange={onChange}>
+        onChange={onChange}
+      >
         <input readOnly />
       </Cascader>,
     );
 
     wrapper.find('input').simulate('click');
-    const menus = wrapper.find('.rc-cascader-menu');
+    const menus = wrapper.find('.rc-cascader-menu .rc-cascader-menu');
     expect(menus.length).toBe(1);
     const menu1Items = menus.at(0).find('.rc-cascader-menu-item');
     expect(menu1Items.length).toBe(5);
     wrapper.clickOption(0, 3, 'mouseEnter');
 
-    const menus2 = wrapper.find('.rc-cascader-menu');
+    const menus2 = wrapper.find('.rc-cascader-menu .rc-cascader-menu');
     expect(menus2.length).toBe(2);
     const menu2Items = menus2.at(1).find('.rc-cascader-menu-item');
     expect(menu2Items.length).toBe(2);
     wrapper.clickOption(1, 0, 'mouseEnter');
 
-    expect(wrapper.find('.rc-cascader-menu')).toHaveLength(3);
+    expect(wrapper.find('.rc-cascader-menu .rc-cascader-menu')).toHaveLength(3);
     wrapper.clickOption(1, 1, 'mouseEnter');
-    expect(wrapper.find('.rc-cascader-menu')).toHaveLength(2); // should hide the previous secondary menu
+    expect(wrapper.find('.rc-cascader-menu .rc-cascader-menu')).toHaveLength(2); // should hide the previous secondary menu
 
     wrapper.clickOption(0, 4, 'mouseEnter');
-    expect(wrapper.find('.rc-cascader-menu')).toHaveLength(1); // should hide the previous secondary menu
+    expect(wrapper.find('.rc-cascader-menu .rc-cascader-menu')).toHaveLength(1); // should hide the previous secondary menu
 
     jest.runAllTimers();
     wrapper.update();
     expect(selectedValue).toBeFalsy();
     expect(wrapper.isOpen()).toBeTruthy();
-  })
+  });
 
   describe('focus test', () => {
     let domSpy;
@@ -752,9 +753,9 @@ describe('Cascader.Basic', () => {
       wrapper.clickOption(0, 0);
       wrapper.clickOption(1, 0);
 
-      expect(wrapper.find('li.rc-cascader-menu-item-active')).toHaveLength(2);
-      expect(wrapper.find('li.rc-cascader-menu-item-active').first().text()).toEqual('Bamboo');
-      expect(wrapper.find('li.rc-cascader-menu-item-active').last().text()).toEqual('Little');
+      expect(wrapper.find('.rc-cascader-menu-item-active')).toHaveLength(2);
+      expect(wrapper.find('.rc-cascader-menu-item-active').first().text()).toEqual('Bamboo');
+      expect(wrapper.find('.rc-cascader-menu-item-active').last().text()).toEqual('Little');
     });
 
     it('expandTrigger: hover', () => {
@@ -781,8 +782,8 @@ describe('Cascader.Basic', () => {
       wrapper.clickOption(0, 0, 'mouseEnter');
       wrapper.clickOption(1, 0, 'mouseEnter');
 
-      expect(wrapper.find('li.rc-cascader-menu-item-active')).toHaveLength(1);
-      expect(wrapper.find('li.rc-cascader-menu-item-active').first().text()).toEqual('Bamboo');
+      expect(wrapper.find('.rc-cascader-menu-item-active')).toHaveLength(1);
+      expect(wrapper.find('.rc-cascader-menu-item-active').first().text()).toEqual('Bamboo');
     });
 
     describe('the defaultValue should be activated the first time it is opened', () => {
@@ -799,13 +800,12 @@ describe('Cascader.Basic', () => {
           );
 
           wrapper.find('input').simulate('click');
-          const activeItems = wrapper.find('li.rc-cascader-menu-item-active');
+          const activeItems = wrapper.find('.rc-cascader-menu-item-active');
           expect(activeItems).toHaveLength(2);
           expect(activeItems.last().text()).toEqual('高雄');
         });
-      })
+      });
     });
-
   });
 
   it('defaultValue not exist', () => {
@@ -844,7 +844,7 @@ describe('Cascader.Basic', () => {
     wrapper.clickOption(0, 0);
 
     expect(onValueChange).toHaveBeenCalledWith(['parent'], expect.anything());
-    expect(wrapper.find('ul.rc-cascader-menu')).toHaveLength(1);
+    expect(wrapper.find('.rc-cascader-menu .rc-cascader-menu')).toHaveLength(1);
   });
 
   describe('ReactNode label should not be [object]', () => {
@@ -1024,8 +1024,8 @@ describe('Cascader.Basic', () => {
         />,
       );
 
-      wrapper.find(`li[data-path-key]`).at(0).simulate('click');
-      wrapper.find(`li[data-path-key]`).at(1).simulate('click');
+      wrapper.find(`.rc-cascader-menu-item[data-path-key]`).at(0).simulate('click');
+      wrapper.find(`.rc-cascader-menu-item[data-path-key]`).at(1).simulate('click');
     });
   });
 

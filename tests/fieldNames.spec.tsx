@@ -45,13 +45,13 @@ describe('Cascader.FieldNames', () => {
     expect(wrapper.isOpen()).toBeTruthy();
 
     // Check values
-    expect(wrapper.find('.rc-cascader-menu')).toHaveLength(1);
-    expect(wrapper.find('.rc-cascader-menu').at(0).find('.rc-cascader-menu-item')).toHaveLength(2);
+    expect(wrapper.find('.rc-cascader-menu .rc-cascader-menu')).toHaveLength(1);
+    expect(wrapper.find('.rc-cascader-menu .rc-cascader-menu').at(0).find('.rc-cascader-menu-item')).toHaveLength(2);
 
     // Click Bamboo
     wrapper.clickOption(0, 1);
-    expect(wrapper.find('.rc-cascader-menu')).toHaveLength(2);
-    expect(wrapper.find('.rc-cascader-menu').at(1).find('.rc-cascader-menu-item')).toHaveLength(1);
+    expect(wrapper.find('.rc-cascader-menu .rc-cascader-menu')).toHaveLength(2);
+    expect(wrapper.find('.rc-cascader-menu .rc-cascader-menu').at(1).find('.rc-cascader-menu-item')).toHaveLength(1);
 
     // Click Little & Toy
     wrapper.clickOption(1, 0);
@@ -80,7 +80,7 @@ describe('Cascader.FieldNames', () => {
 
     expect(wrapper.find('.rc-cascader-selection-item').text()).toEqual('Bamboo / Little / Toy');
 
-    expect(wrapper.find('.rc-cascader-menu')).toHaveLength(3);
+    expect(wrapper.find('.rc-cascader-menu .rc-cascader-menu')).toHaveLength(3);
     expect(wrapper.find('.rc-cascader-menu-item-active')).toHaveLength(3);
     expect(wrapper.find('.rc-cascader-menu-item-active').at(0).text()).toEqual('Bamboo');
     expect(wrapper.find('.rc-cascader-menu-item-active').at(1).text()).toEqual('Little');

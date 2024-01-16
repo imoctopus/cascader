@@ -165,7 +165,7 @@ describe('Cascader.Checkable', () => {
       </Cascader>,
     );
     wrapper.find('input').simulate('click');
-    const menus = wrapper.find('.rc-cascader-menu');
+    const menus = wrapper.find('.rc-cascader-menu .rc-cascader-menu');
     expect(menus.find('.rc-cascader-checkbox').length).toBe(0);
   });
 

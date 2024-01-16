@@ -100,7 +100,7 @@ describe('Cascader.LoadData', () => {
       </Cascader>,
     );
     wrapper.find('input').simulate('click');
-    const menus = wrapper.find('.rc-cascader-menu');
+    const menus = wrapper.find('.rc-cascader-menu .rc-cascader-menu');
     const menu1Items = menus.at(0).find('.rc-cascader-menu-item');
     menu1Items.at(0).simulate('mouseEnter');
     jest.runAllTimers();
@@ -180,6 +180,6 @@ describe('Cascader.LoadData', () => {
     }
     wrapper.update();
 
-    expect(wrapper.find('ul.rc-cascader-menu')).toHaveLength(3);
+    expect(wrapper.find('.rc-cascader-menu .rc-cascader-menu')).toHaveLength(3);
   });
 });

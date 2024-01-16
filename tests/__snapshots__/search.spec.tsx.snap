@@ -37,37 +37,50 @@ exports[`Cascader.Search should correct render Cascader with same field name of 
       <div
         class="rc-cascader-menus"
       >
-        <ul
-          class="rc-cascader-menu"
-          role="menu"
+        <div
+          class="rc-virtual-list rc-cascader-menu"
+          style="position: relative;"
         >
-          <li
-            aria-checked="false"
-            class="rc-cascader-menu-item"
-            data-path-key="Zhejiang__RC_CASCADER_SPLIT__Hangzhou__RC_CASCADER_SPLIT__West Lake"
-            role="menuitemcheckbox"
-            title="Zhejiang / Hangzhou / West Lake"
+          <div
+            class="rc-virtual-list-holder"
+            style="height: 180px; overflow-y: hidden;"
           >
-            <div
-              class="rc-cascader-menu-item-content"
-            >
-              Zhejiang / Hangzhou / West Lake
+            <div>
+              <div
+                class="rc-virtual-list-holder-inner"
+                role="menu"
+                style="display: flex; flex-direction: column;"
+              >
+                <div
+                  aria-checked="false"
+                  class="rc-cascader-menu-item"
+                  data-path-key="Zhejiang__RC_CASCADER_SPLIT__Hangzhou__RC_CASCADER_SPLIT__West Lake"
+                  role="menuitemcheckbox"
+                  title="Zhejiang / Hangzhou / West Lake"
+                >
+                  <div
+                    class="rc-cascader-menu-item-content"
+                  >
+                    Zhejiang / Hangzhou / West Lake
+                  </div>
+                </div>
+                <div
+                  aria-checked="false"
+                  class="rc-cascader-menu-item rc-cascader-menu-item-disabled"
+                  data-path-key="Zhejiang__RC_CASCADER_SPLIT__Hangzhou__RC_CASCADER_SPLIT__Xia Sha"
+                  role="menuitemcheckbox"
+                  title="Zhejiang / Hangzhou / Xia Sha"
+                >
+                  <div
+                    class="rc-cascader-menu-item-content"
+                  >
+                    Zhejiang / Hangzhou / Xia Sha
+                  </div>
+                </div>
+              </div>
             </div>
-          </li>
-          <li
-            aria-checked="false"
-            class="rc-cascader-menu-item rc-cascader-menu-item-disabled"
-            data-path-key="Zhejiang__RC_CASCADER_SPLIT__Hangzhou__RC_CASCADER_SPLIT__Xia Sha"
-            role="menuitemcheckbox"
-            title="Zhejiang / Hangzhou / Xia Sha"
-          >
-            <div
-              class="rc-cascader-menu-item-content"
-            >
-              Zhejiang / Hangzhou / Xia Sha
-            </div>
-          </li>
-        </ul>
+          </div>
+        </div>
       </div>
     </div>
   </div>
