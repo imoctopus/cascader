@@ -1,5 +1,6 @@
 import classNames from 'classnames';
 import * as React from 'react';
+import VirtualList from 'rc-virtual-list';
 import type { DefaultOptionType, SingleValueType } from '../Cascader';
 import CascaderContext from '../context';
 import { SEARCH_MARK } from '../hooks/useSearchOptions';
@@ -51,6 +52,9 @@ export default function Column({
     expandIcon,
     loadingIcon,
     dropdownMenuColumnStyle,
+    virtual,
+    listHeight,
+    listItemHeight,
   } = React.useContext(CascaderContext);
 
   const hoverOpen = expandTrigger === 'hover';
@@ -99,115 +103,121 @@ export default function Column({
 
   // ============================ Render ============================
   return (
-    <ul className={menuPrefixCls} role="menu">
-      {optionInfoList.map(
-        ({
-          disabled,
-          label,
-          value,
-          isLeaf: isMergedLeaf,
-          isLoading,
-          checked,
-          halfChecked,
-          option,
-          fullPath,
-          fullPathKey,
-          disableCheckbox,
-        }) => {
-          // >>>>> Open
-          const triggerOpenPath = () => {
-            if (disabled || searchValue) {
-              return;
-            }
-            const nextValueCells = [...fullPath];
-            if (hoverOpen && isMergedLeaf) {
-              nextValueCells.pop();
-            }
-            onActive(nextValueCells);
-          };
-
-          // >>>>> Selection
-          const triggerSelect = () => {
-            if (isSelectable(option)) {
-              onSelect(fullPath, isMergedLeaf);
-            }
-          };
-
-          // >>>>> Title
-          let title: string;
-          if (typeof option.title === 'string') {
-            title = option.title;
-          } else if (typeof label === 'string') {
-            title = label;
+    <VirtualList
+      className={menuPrefixCls}
+      data={optionInfoList}
+      virtual={virtual}
+      height={listHeight}
+      itemHeight={listItemHeight}
+      itemKey="value"
+      innerProps={{
+        role: 'menu',
+      }}
+    >
+      {({
+        disabled,
+        label,
+        value,
+        isLeaf: isMergedLeaf,
+        isLoading,
+        checked,
+        halfChecked,
+        option,
+        fullPath,
+        fullPathKey,
+        disableCheckbox,
+      }) => {
+        // >>>>> Open
+        const triggerOpenPath = () => {
+          if (disabled || searchValue) {
+            return;
           }
+          const nextValueCells = [...fullPath];
+          if (hoverOpen && isMergedLeaf) {
+            nextValueCells.pop();
+          }
+          onActive(nextValueCells);
+        };
 
-          // >>>>> Render
-          return (
-            <li
-              key={fullPathKey}
-              className={classNames(menuItemPrefixCls, {
-                [`${menuItemPrefixCls}-expand`]: !isMergedLeaf,
-                [`${menuItemPrefixCls}-active`]:
-                  activeValue === value || activeValue === fullPathKey,
-                [`${menuItemPrefixCls}-disabled`]: disabled,
-                [`${menuItemPrefixCls}-loading`]: isLoading,
-              })}
-              style={dropdownMenuColumnStyle}
-              role="menuitemcheckbox"
-              title={title}
-              aria-checked={checked}
-              data-path-key={fullPathKey}
-              onClick={() => {
+        // >>>>> Selection
+        const triggerSelect = () => {
+          if (isSelectable(option)) {
+            onSelect(fullPath, isMergedLeaf);
+          }
+        };
+
+        // >>>>> Title
+        let title: string;
+        if (typeof option.title === 'string') {
+          title = option.title;
+        } else if (typeof label === 'string') {
+          title = label;
+        }
+
+        // >>>>> Render
+        return (
+          <div
+            className={classNames(menuItemPrefixCls, {
+              [`${menuItemPrefixCls}-expand`]: !isMergedLeaf,
+              [`${menuItemPrefixCls}-active`]: activeValue === value || activeValue === fullPathKey,
+              [`${menuItemPrefixCls}-disabled`]: disabled,
+              [`${menuItemPrefixCls}-loading`]: isLoading,
+            })}
+            style={dropdownMenuColumnStyle}
+            role="menuitemcheckbox"
+            title={title}
+            aria-checked={checked}
+            data-path-key={fullPathKey}
+            onClick={() => {
+              triggerOpenPath();
+              if (disableCheckbox) {
+                return;
+              }
+              if (!multiple || isMergedLeaf) {
+                triggerSelect();
+              }
+            }}
+            onDoubleClick={() => {
+              if (changeOnSelect) {
+                onToggleOpen(false);
+              }
+            }}
+            onMouseEnter={() => {
+              if (hoverOpen) {
                 triggerOpenPath();
-                if (disableCheckbox) {
-                  return;
-                }
-                if (!multiple || isMergedLeaf) {
+              }
+            }}
+            onMouseDown={e => {
+              // Prevent selector from blurring
+              e.preventDefault();
+            }}
+          >
+            {multiple && (
+              <Checkbox
+                prefixCls={`${prefixCls}-checkbox`}
+                checked={checked}
+                halfChecked={halfChecked}
+                disabled={disabled || disableCheckbox}
+                disableCheckbox={disableCheckbox}
+                onClick={(e: React.MouseEvent<HTMLSpanElement>) => {
+                  if (disableCheckbox) {
+                    return;
+                  }
+                  e.stopPropagation();
                   triggerSelect();
-                }
-              }}
-              onDoubleClick={() => {
-                if (changeOnSelect) {
-                  onToggleOpen(false);
-                }
-              }}
-              onMouseEnter={() => {
-                if (hoverOpen) {
-                  triggerOpenPath();
-                }
-              }}
-              onMouseDown={e => {
-                // Prevent selector from blurring
-                e.preventDefault();
-              }}
-            >
-              {multiple && (
-                <Checkbox
-                  prefixCls={`${prefixCls}-checkbox`}
-                  checked={checked}
-                  halfChecked={halfChecked}
-                  disabled={disabled || disableCheckbox}
-                  disableCheckbox={disableCheckbox}
-                  onClick={(e: React.MouseEvent<HTMLSpanElement>) => {
-                    if (disableCheckbox) {
-                      return;
-                    }
-                    e.stopPropagation();
-                    triggerSelect();
-                  }}
-                />
-              )}
-              <div className={`${menuItemPrefixCls}-content`}>{label}</div>
-              {!isLoading && expandIcon && !isMergedLeaf && (
-                <div className={`${menuItemPrefixCls}-expand-icon`}>{expandIcon}</div>
-              )}
-              {isLoading && loadingIcon && (
-                <div className={`${menuItemPrefixCls}-loading-icon`}>{loadingIcon}</div>
-              )}
-            </li>
-          );
-        },
-      )}
-    </ul>
+                }}
+              />
+            )}
+            <div className={`${menuItemPrefixCls}-content`}>{label}</div>
+            {!isLoading && expandIcon && !isMergedLeaf && (
+              <div className={`${menuItemPrefixCls}-expand-icon`}>{expandIcon}</div>
+            )}
+            {isLoading && loadingIcon && (
+              <div className={`${menuItemPrefixCls}-loading-icon`}>{loadingIcon}</div>
+            )}
+          </div>
+        );
+      }}
+    </VirtualList>
   );
 }

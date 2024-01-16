@@ -170,13 +170,13 @@ const RawOptionList = React.forwardRef<RefOptionListProps, RawOptionListProps>((
       const cellPath = activeValueCells.slice(0, i + 1);
       const cellKeyPath = toPathKey(cellPath);
       const ele = containerRef.current?.querySelector<HTMLElement>(
-        `li[data-path-key="${cellKeyPath.replace(/\\{0,2}"/g, '\\"')}"]`, // matches unescaped double quotes
+        `.${mergedPrefixCls}-menu-item[data-path-key="${cellKeyPath.replace(/\\{0,2}"/g, '\\"')}"]`, // matches unescaped double quotes
       );
       if (ele) {
         scrollIntoParentView(ele);
       }
     }
-  }, [activeValueCells]);
+  }, [activeValueCells, mergedPrefixCls]);
 
   // ========================== Render ==========================
   // >>>>> Empty

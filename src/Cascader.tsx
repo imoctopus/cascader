@@ -120,6 +120,11 @@ interface BaseCascaderProps<OptionType extends BaseOptionType = DefaultOptionTyp
   // Icon
   expandIcon?: React.ReactNode;
   loadingIcon?: React.ReactNode;
+
+  // Virtual
+  virtual?: boolean;
+  listHeight?: number;
+  listItemHeight?: number;
 }
 
 type OnSingleChange<OptionType> = (value: SingleValueType, selectOptions: OptionType[]) => void;
@@ -210,6 +215,12 @@ const Cascader = React.forwardRef<CascaderRef, InternalCascaderProps>((props, re
     children,
     dropdownMatchSelectWidth = false,
     showCheckedStrategy = SHOW_PARENT,
+
+    // Virtual
+    virtual = true,
+    listHeight = 180,
+    listItemHeight = 22,
+    
     ...restProps
   } = props;
 
@@ -384,6 +395,9 @@ const Cascader = React.forwardRef<CascaderRef, InternalCascaderProps>((props, re
       expandIcon,
       loadingIcon,
       dropdownMenuColumnStyle,
+      virtual,
+      listHeight,
+      listItemHeight,
     }),
     [
       mergedOptions,
@@ -400,6 +414,9 @@ const Cascader = React.forwardRef<CascaderRef, InternalCascaderProps>((props, re
       expandIcon,
       loadingIcon,
       dropdownMenuColumnStyle,
+      virtual,
+      listHeight,
+      listItemHeight,
     ],
   );
 
